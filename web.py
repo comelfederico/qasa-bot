@@ -6,20 +6,26 @@ import sys
 # Import and run the main bot in a separate thread
 def run_bot():
     print("🤖 Bot thread initialized")
-    import main
+    from main import scrape_qasa, get_random_delay, is_active_hours, get_sleep_until_active
+    import time
+    
     # Run the main bot loop
     while True:
         try:
-            print("🔍 Starting Qasa check...")
-            main.scrape_qasa()
-            import time
-            import random
-            delay = main.get_random_delay()
-            print(f"⏰ Next check in {int(delay)} minutes...")
-            time.sleep(delay * 60)
+            if is_active_hours():
+                print("🔍 Starting Qasa check...")
+                scrape_qasa()
+                delay = get_random_delay()
+                print(f"⏰ Next check in {int(delay)} minutes...")
+                time.sleep(delay * 60)
+            else:
+                sleep_minutes = get_sleep_until_active()
+                start_hour = int(os.getenv('ACTIVE_START_HOUR', 7))
+                print(f"😴 Outside active hours (7:00 - 23:00). Sleeping until {start_hour}:00...")
+                print(f"💤 Sleeping for {int(sleep_minutes)} minutes...")
+                time.sleep(sleep_minutes * 60)
         except Exception as e:
             print(f"❌ Error in bot loop: {e}")
-            import time
             time.sleep(60)  # Wait 1 minute before retrying
 
 app = Flask(__name__)

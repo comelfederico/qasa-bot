@@ -224,16 +224,5 @@ def get_sleep_until_active():
         today_start = current_time.replace(hour=start_hour, minute=0, second=0, microsecond=0)
         return (today_start - current_time).total_seconds() / 60
 
-while True:
-    if is_active_hours():
-        scrape_qasa()
-        delay = get_random_delay()
-        print(f"Next check in {int(delay)} minutes...")
-        time.sleep(delay * 60)
-    else:
-        sleep_minutes = get_sleep_until_active()
-        start_hour = int(os.getenv('ACTIVE_START_HOUR', 7))
-        end_hour = int(os.getenv('ACTIVE_END_HOUR', 23))
-        print(f"Outside active hours ({start_hour}:00 - {end_hour}:00). Sleeping until {start_hour}:00...")
-        print(f"Sleeping for {int(sleep_minutes)} minutes...")
-        time.sleep(sleep_minutes * 60)
+# Main loop removed - this file is now imported by web.py
+# The bot loop runs in the web.py thread instead
