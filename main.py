@@ -65,8 +65,10 @@ New apartment found:
 
 Automatically found by your Qasa bot.
 """
-        yag.send(to=config['gmail_user'], subject=subject, contents=body)
-        print(f"Email sent for: {listing['title']}")
+        # Send to both you and Letizia
+        recipients = [config['gmail_user'], 'letizia.contini03@gmail.com']
+        yag.send(to=recipients, subject=subject, contents=body)
+        print(f"Email sent to both recipients for: {listing['title']}")
     except Exception as e:
         print(f"Failed to send email: {e}")
 
