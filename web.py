@@ -21,7 +21,7 @@ def run_bot():
             else:
                 sleep_minutes = get_sleep_until_active()
                 start_hour = int(os.getenv('ACTIVE_START_HOUR', 7))
-                print(f"😴 Outside active hours (7:00 - 23:00). Sleeping until {start_hour}:00...")
+                print(f"😴 Outside active hours (7:00 - 00:00). Sleeping until {start_hour}:00...")
                 print(f"💤 Sleeping for {int(sleep_minutes)} minutes...")
                 time.sleep(sleep_minutes * 60)
         except Exception as e:

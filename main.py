@@ -214,7 +214,7 @@ def get_sleep_until_active():
     
     # Get hours from config or use defaults
     start_hour = int(os.getenv('ACTIVE_START_HOUR', 7))
-    end_hour = int(os.getenv('ACTIVE_END_HOUR', 23))
+    end_hour = int(os.getenv('ACTIVE_END_HOUR', 0))
     
     tomorrow = current_time.replace(hour=start_hour, minute=0, second=0, microsecond=0) + timedelta(days=1)
     
