@@ -32,7 +32,7 @@ def load_config():
 config = load_config()
 
 SEEN_FILE = "/app/seen_listings.json"
-FILTERED_URL = "https://qasa.se/en/find-home?furnished=furnished&maxMonthlyCost=12300&maxRoomCount=4&searchAreas=Stockholm~~se&sharedHome=privateHome"
+FILTERED_URL = "https://qasa.se/en/find-home?furnished=furnished&maxMonthlyCost=13500&maxRoomCount=4&searchAreas=Stockholm~~se&sharedHome=privateHome"
 
 # Load previously seen listing IDs
 if os.path.exists(SEEN_FILE):
